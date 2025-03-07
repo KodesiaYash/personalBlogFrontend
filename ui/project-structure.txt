@@ -1,0 +1,27 @@
+/
+├── app/
+│   ├── layout.tsx
+│   ├── page.tsx
+│   ├── globals.css
+│   ├── blogs/
+│   │   ├── page.tsx
+│   │   └── [id]/
+│   │       └── page.tsx
+│   └── contact/
+│       └── page.tsx
+├── components/
+│   ├── Header.tsx
+│   └── Footer.tsx
+├── lib/
+│   └── api.ts
+├── public/
+│   └── placeholder.svg
+├── .env.local
+├── .gitignore
+├── next.config.js
+├── package.json
+├── README.md
+├── tailwind.config.js
+├── tsconfig.json
+└── vercel.json
+
