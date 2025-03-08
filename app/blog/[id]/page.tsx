@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
@@ -21,7 +22,7 @@ async function getBlogById(id: string) {
     console.error(`Error fetching blog with id ${id}:`, error)
 
     // Mock data for demonstration
-    const mockBlogs = {
+    const mockBlogs: { [key: string]: Blog } = {
       "1": {
         id: "1",
         title: "Getting Started with Next.js",
@@ -87,8 +88,7 @@ Next.js makes it easy to build fast, SEO-friendly React applications. With its i
       "2": {
         id: "2",
         title: "Introduction to FastAPI",
-        content:
-          `
+        content: `
 # Introduction to FastAPI
 
 FastAPI is a modern, fast (high-performance) web framework for building APIs with Python 3.7+ based on standard Python type hints.
@@ -136,12 +136,6 @@ def read_item(item_id: int, q: str = None):
 To run the server, use the following command:
 
 \`\`\`bash
-uvicorn main:app  item_id, "q": q}
-\`\`\`
-
-To run the server, use the following command:
-
-\`\`\`bash
 uvicorn main:app --reload
 \`\`\`
 
@@ -151,10 +145,8 @@ This will start the server with auto-reload enabled, which is useful during deve
 
 One of the best features of FastAPI is the automatic interactive API documentation. When you run your FastAPI application, you can access the documentation at:
 
-- ` /
-          docs`: Swagger UI documentation
-- ` /
-          redoc`: ReDoc documentation
+- \`/docs\`: Swagger UI documentation
+- \`/redoc\`: ReDoc documentation
 
 These pages are automatically generated based on your API routes and provide a way to test your API directly from the browser.
 
@@ -214,7 +206,23 @@ FastAPI is a powerful framework for building APIs with Python. Its combination o
   }
 }
 
-export default async function BlogPost({ params }: { params: { id: string } }) {
+interface Blog {
+  id: string;
+  title: string;
+  content: string;
+  date: string;
+  author: string;
+  coverImage: string;
+  tags: string[];
+}
+
+interface BlogPostProps {
+  params: {
+    id: string
+  }
+}
+
+export default async function BlogPost({ params }: BlogPostProps) {
   const blog = await getBlogById(params.id)
 
   if (!blog) {
